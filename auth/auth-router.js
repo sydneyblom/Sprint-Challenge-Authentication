@@ -8,8 +8,7 @@ const usersDB = require("../users/user-model");
 
 router.post('/register', (req, res) => {
   const { username, password } = req.body;
-
-  // We shouldn't store a user if they have a missing username or password
+//making sure they have entered a username and pw
   if (!username || !password) {
     res.status(500).json({ error: 'Invalid credentials for creating user' })
   } else {
@@ -29,7 +28,7 @@ router.post('/login', (req, res) => {
   // implement login
   const { username, password } = req.body;
 
-  // We can't login a user if they have a missing username or password
+//making sure they have entered a username and pw
   if (!username || !password) {
     res.status(500).json({ error: 'There was an error signing the user into the database.' })
   } else {

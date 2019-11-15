@@ -9,7 +9,7 @@ describe('auth-router', function () {
   });
 
 
-  describe('Empty put /api/auth/register', () => {
+  describe('Empty post /api/auth/register', () => {
     test('It should not allow a bad registration', (done) => {
       request(server).post('/api/auth/register')
         .send({
@@ -25,7 +25,7 @@ describe('auth-router', function () {
   });
 
   describe('Test the register path', () => {
-    test('Correct put /api/auth/register', (done) => {
+    test('Correct post /api/auth/register', (done) => {
       request(server).post('/api/auth/register')
         .send({
           username: 'sydney',
@@ -41,7 +41,7 @@ describe('auth-router', function () {
   });
 
 
-  describe('Empty put /api/auth/login', () => {
+  describe('Empty post /api/auth/login', () => {
     test('It should not allow a bad login', (done) => {
       request(server).post('/api/auth/login')
         .send({
@@ -56,13 +56,14 @@ describe('auth-router', function () {
     });
   });
 
-  describe('Correct put /api/auth/login', () => {
+  describe('Correct post /api/auth/login', () => {
     test('It should allow a good login', (done) => {
       request(server).post('/api/auth/register')
         .send({
           username: 'sydney',
           password: 'secretValue'
         })
+        //need to set the user to remember the log in
         .set('Accept', 'application/json').then((createUser) => {
         request(server).post('/api/auth/login')
           .send({
